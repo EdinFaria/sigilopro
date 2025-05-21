@@ -1,0 +1,42 @@
+:root {
+    --primary: #0056b3;
+    --light: #f2f2f2;
+  }
+  
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--light);
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+  }
+  
+  .form,
+  .filters { margin-bottom: 1.5rem; }
+  
+  .button {
+    padding: 0.75rem 1.25rem;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+  }

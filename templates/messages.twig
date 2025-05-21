@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquivo de Mensagens</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<main class="container">
+    <h1>Mensagens Arquivadas</h1>
+    <form action="/message" method="post" class="form">
+        {% for field in ['remetente', 'destinatario', 'mensagem', 'grau', 'sigilo'] %}
+            <label for="{{ field }}">{{ field|capitalize }}:</label>
+            {% if field == 'mensagem' %}
+                <textarea id="{{ field }}" name="{{ field }}" required></textarea>
+            {% elseif field in ['grau', 'sigilo'] %}
+                <select id="{{ field }}" name="{{ field }}">
+                    <option value="">Selecione</option>
+                    {% for option in (field == 'grau' ? ['Alta','Média','Baixa'] : ['Confidencial','Restrito','Público']) %}
+                        <option value="{{ option|lower }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            {% else %}
+                <input type="text" id="{{ field }}" name="{{ field }}" required>
+            {% endif %}
+        {% endfor %}
+        <button type="submit" class="button">Enviar</button>
+    </form>
+
+    <section class="filters">
+        <select id="filterGrau">
+            <option value="">Todos os Graus</option>
+            <option value="alta">Alta</option>
+            <option value="média">Média</option>
+            <option value="baixa">Baixa</option>
+        </select>
+        <select id="filterSigilo">
+            <option value="">Todos os Sigilos</option>
+            <option value="confidencial">Confidencial</option>
+            <option value="restrito">Restrito</option>
+            <option value="público">Público</option>
+        </select>
+        <button id="applyFilter" class="button">Filtrar</button>
+    </section>
+
+    <table class="table">
+        <thead>
+            <tr>
+                {% for col in ['ID','Remetente','Destinatário','Mensagem','Grau','Sigilo','Data'] %}
+                    <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody id="msg-body">
+            {% for m in messages %}
+                <tr>
+                    <td>{{ m.id }}</td>
+                    <td>{{ m.remetente }}</td>
+                    <td>{{ m.destinatario }}</td>
+                    <td>{{ m.mensagem }}</td>
+                    <td>{{ m.grau }}</td>
+                    <td>{{ m.sigilo }}</td>
+                    <td>{{ m.dataEnvio }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+<script src="/assets/js/app.js"></script>
+</body>
+</html>
