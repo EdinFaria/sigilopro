@@ -1,4 +1,4 @@
-# SigiloPro: Sistema de Arquivologia de Mensagens (v2)
+# SigiloPro: Sistema de Arquivologia de Mensagens
 
 ## Estrutura de Pastas
 
